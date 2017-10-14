@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:nuberu/nuberu.dart';
 
-class NuberuMysql implements NuberuConnector {
+class NuberuMysql implements Connector {
   NuberuMysql(String database, String username, String password, [
     String host = "localhost",
     int port = 3306,

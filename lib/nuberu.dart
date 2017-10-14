@@ -6,9 +6,9 @@
 /// More dartdocs go here.
 library nuberu;
 
-export 'package:nuberu/src/core/nuberu_connector.dart';
-export 'package:nuberu/src/core/nuberu_property.dart';
-export 'package:nuberu/src/core/nuberu_model.dart';
-export 'package:nuberu/src/core/nuberu.dart';
+export 'package:nuberu/src/core/comparison.dart';
+export 'package:nuberu/src/core/connector.dart';
+export 'package:nuberu/src/core/repository.dart';
+export 'package:nuberu/src/core/filter.dart';
 
 // TODO: Export any libraries intended for clients of this package.

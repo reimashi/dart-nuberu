@@ -1,5 +1,5 @@
 import 'dart:async';
 
-abstract class NuberuConnector {
+abstract class Connector {
   Future connect();
 }
