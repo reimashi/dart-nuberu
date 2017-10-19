@@ -1,5 +1,6 @@
 import 'comparison.dart';
 
+/// Define filters to a query
 class Filter {
   /// The limit of elements in the query.
   int limit = -1;
@@ -22,4 +23,6 @@ class Filter {
 
   /// A list of properties to populate.
   List<String> populate = [];
+
+  Filter({int this.limit = -1});
 }

@@ -1,25 +1,8 @@
 import 'dart:async';
-import 'package:meta/meta.dart';
 import 'filter.dart';
-import 'connector.dart';
 
+/// Active connection to a database/repository
 abstract class Repository {
-  @protected
-  /// Connection to the database.
-  final Connector connector;
-
-  @protected
-  /// If true, all queries are automatic.
-  final bool autocommit;
-
-  Repository(Connector con)
-      : connector = con,
-        autocommit = false;
-
-  Repository.transactional(Repository man)
-      : connector = man.connector,
-        autocommit = true;
-
   /// Find the first element of type [E] that meets the [filter].
   Future<E> findOne<E>([Filter filter]);
 

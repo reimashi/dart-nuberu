@@ -1,9 +1,8 @@
 import 'package:nuberu/nuberu.dart';
 
-class UserModel extends NuberuModel {
-  NuberuProperty<DateTime> birthdate;
-
-  NuberuProperty<String> name;
-
-  NuberuProperty<UserModel> parent;
+class Feeds {
+  int id;
+  String name;
+  String url;
+  bool active;
 }

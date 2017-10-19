@@ -1,1 +1,1 @@
-export 'package:nuberu/src/mysql/nubery_mysql.dart';
+export 'package:nuberu/src/mysql/connector.dart';
