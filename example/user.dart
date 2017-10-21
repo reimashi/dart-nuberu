@@ -5,4 +5,7 @@ class Feeds {
   String name;
   String url;
   bool active;
+
+  int get ids => id;
+  int getId() => id;
 }

@@ -7,9 +7,5 @@ import 'package:nuberu/nuberu.mysql.dart';
 import 'user.dart';
 
 main() async {
-  var connector = new MysqlConnector("galert", "galert", "galertpass");
-  var repository = await connector.connect();
-  print("conectado");
-  connector.disconnect();
-  print("desconectado");
+  Model feedmodel = new Model<Feeds>();
 }
