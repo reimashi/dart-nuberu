@@ -7,5 +7,11 @@ import 'package:nuberu/nuberu.mysql.dart';
 import 'user.dart';
 
 main() async {
-  Model feedmodel = new Model<Feeds>();
+
+  Feed bean = new Feed();
+  bean.id = 1;
+  bean.name = "hola";
+
+  print(ModelReflector.getName(bean));
+  print(ModelReflector.getProperties(bean));
 }

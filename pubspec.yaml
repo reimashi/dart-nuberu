@@ -9,8 +9,8 @@ environment:
 
 dependencies:
   meta: ^1.1.2
+  inflection: ^0.4.1
   sqljocky5: ^1.0.0
-#  path: ^1.4.1
 
 dev_dependencies:
   test: ^0.12.0

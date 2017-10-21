@@ -1,6 +1,6 @@
 import 'package:nuberu/nuberu.dart';
 
-class Feeds {
+class Feed {
   int id;
   String name;
   String url;

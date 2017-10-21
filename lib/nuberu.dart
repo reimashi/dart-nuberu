@@ -10,6 +10,7 @@ export 'package:nuberu/src/core/comparison.dart';
 export 'package:nuberu/src/core/connector.dart';
 export 'package:nuberu/src/core/repository.dart';
 export 'package:nuberu/src/core/filter.dart';
-export 'package:nuberu/src/core/model.dart';
+export 'package:nuberu/src/core/model-reflector.dart';
+export 'package:nuberu/src/core/model-property.dart';
 
 // TODO: Export any libraries intended for clients of this package.
