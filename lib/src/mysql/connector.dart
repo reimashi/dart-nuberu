@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'package:logging/logging.dart';
 import 'package:nuberu/src/mysql/repository.dart';
 import 'package:sqljocky5/sqljocky.dart';
 import 'package:nuberu/nuberu.dart';
 
-class MysqlConnector implements Connector {
+class MysqlConnector implements Database {
+  final Logger log = new Logger("MysqlConnector");
   ConnectionPool _connection;
 
   MysqlConnector(String database, String username, String password,

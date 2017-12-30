@@ -1,44 +1,39 @@
 import 'dart:async';
-import 'filter.dart';
+import 'query.dart';
+import 'condition.dart';
 
 /// Active connection to a database/repository
-abstract class Repository {
-  /// Find the first element of type [E] that meets the [filter].
-  Future<E> findOne<E>([Filter filter]);
-
-  /// Find all elements of type [E] that meets the [filter].
-  Future<List<E>> findAll<E>([Filter filter]);
+abstract class Repository<E> {
+  /// Create a new element
+  Future<E> create();
 
   /// Count all elements of type [E] that meets the [filter].
-  Future<int> count<E>([Filter filter]);
+  Query count();
 
-  /// Save the object [model] of type [E]
-  Future persist<E>(E model);
+  /// Delete the object [instance] of type [E].
+  Future delete(E instance);
 
-  /// Delete the object [model] of type [E].
-  Future delete<E>(E model);
-
-  /// Reload the object [model] of type [E] with the values in the database.
-  Future refresh<E>(E model);
+  /// Delete the object [instance] of type [E].
+  Future deleteAll([List<Condition> conditions = const[]]);
 
   /// Checks if the object [model] of type [E] exists in the database.
-  Future<bool> exists<E>(E model);
+  Future<bool> exists([List<Condition> conditions = const[]]);
 
-  /// Remove all the elements in the repository [name], or all database if not specified.
-  Future clear([String name]);
+  /// Find the first element.
+  Query findOne([List<Condition> conditions = const[]]);
 
-  /// Create a copy of the object [model] of type [E] and update the primary keys.
-  Future<E> copy<E>(E model);
+  /// Find all elements.
+  Query findAll([List<Condition> conditions = const[]]);
 
-  /// Create a non-autocommited manager to execute multiple queries in one transaction.
-  Repository transaction();
+  /// Get an element
+  Future<E> get(id, [List<Condition> conditions = const[]]);
 
-  /// Send all pending queries.
-  Future flush();
+  /// Save the object
+  Future save(E instance);
 
-  /// Check if the manager is still connected.
-  Future<bool> isConnected();
+  /// Update the object with the actual data in database
+  Future<E> update(E instance); // FIXME: imprescindible?
 
-  /// Close the connection associated to this manager.
-  Future close();
+  /// Check if repository has a named [propName] property.
+  bool hasProperty(String propName);
 }

@@ -2,16 +2,20 @@
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
-import 'package:nuberu/nuberu.dart';
+import 'package:logging/logging.dart';
 import 'package:nuberu/nuberu.mysql.dart';
-import 'user.dart';
+import 'feed.dart';
 
 main() async {
+  Logger.root.level = Level.INFO;
+  Logger.root.onRecord.listen((LogRecord rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
 
-  Feed bean = new Feed();
-  bean.id = 1;
-  bean.name = "hola";
+  MysqlConnector conn = new MysqlConnector("galert", "galert", "galertpass");
+  MysqlRepository repo = await conn.connect();
 
-  print(ModelReflector.getName(bean));
-  print(ModelReflector.getProperties(bean));
+  Feed feed = await repo.findOne(Feed);
+  print(feed.url);
+  print(feed.active);
 }

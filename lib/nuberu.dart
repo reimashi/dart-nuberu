@@ -7,10 +7,10 @@
 library nuberu;
 
 export 'package:nuberu/src/core/comparison.dart';
-export 'package:nuberu/src/core/connector.dart';
+export 'package:nuberu/src/core/condition.dart';
+export 'package:nuberu/src/core/database.dart';
+export 'package:nuberu/src/core/query.dart';
+export 'package:nuberu/src/core/query_type.dart';
 export 'package:nuberu/src/core/repository.dart';
-export 'package:nuberu/src/core/filter.dart';
-export 'package:nuberu/src/core/model-reflector.dart';
-export 'package:nuberu/src/core/model-property.dart';
 
 // TODO: Export any libraries intended for clients of this package.
