@@ -6,8 +6,8 @@
 /// More dartdocs go here.
 library nuberu;
 
-export 'package:nuberu/src/core/comparison.dart';
-export 'package:nuberu/src/core/condition.dart';
+export 'package:nuberu/src/core/clauses/comparison.dart';
+export 'package:nuberu/src/core/clauses/clause.dart';
 export 'package:nuberu/src/core/database.dart';
 export 'package:nuberu/src/core/query.dart';
 export 'package:nuberu/src/core/query_type.dart';

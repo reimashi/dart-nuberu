@@ -1,12 +1,19 @@
 import 'dart:async';
 import 'query_type.dart';
-import 'condition.dart';
-import 'comparison.dart';
+import 'package:nuberu/src/core/clauses/clause.dart';
+import 'package:nuberu/src/core/clauses/clause_type.dart';
+import 'package:nuberu/src/core/clauses/contains.dart';
+import 'package:nuberu/src/core/clauses/comparison.dart';
+import 'package:nuberu/src/core/clauses/limit.dart';
+import 'package:nuberu/src/core/clauses/offset.dart';
+import 'package:nuberu/src/core/clauses/order.dart';
+import 'package:nuberu/src/core/clauses/order_type.dart';
+import 'package:nuberu/src/core/clauses/where.dart';
 
 abstract class Query {
   final QueryType type;
   
-  List<Condition> _conditions = [];
+  List<Clause> _clauses = [];
   Map<String, Object> _values = {};
 
   Query.Get() : type = QueryType.GET;
@@ -16,29 +23,32 @@ abstract class Query {
 
   /// Reset all the filters
   void all() {
-    this._conditions.clear();
+    this._clauses.removeWhere((clause) =>
+      [ClauseType.CONTAINS, ClauseType.LIMIT].contains(clause.type)
+    );
   }
 
   /// Get only elements with the [properties] at not null
   void contains(List<String> properties) {
     properties.forEach((prop) {
-      this._conditions.add(Condition.contains(prop));
+      this._clauses.add(new Contains(prop));
     });
   }
 
   /// Set a [limit] of elements to retrieve
   void limit(int limit) {
-    this._conditions.retainWhere((cond) => cond.type != "LIMIT");
-    this._conditions.add(Condition.limit(limit));
+    this._clauses.retainWhere((cond) => cond.type != ClauseType.LIMIT);
+    this._clauses.add(new Limit(limit));
   }
 
   /// Skip a [number] of elements before retrieve.
   void offset(int number, [int page = -1]) {
-    this._conditions.retainWhere((cond) => cond.type != "OFFSET");
-    this._conditions.add(Condition.offset((page == -1) ? number : page * number));
+    this._clauses.retainWhere((cond) => cond.type != ClauseType.OFFSET);
+    this._clauses.add(new Offset((page == -1) ? number : page * number));
   }
 
   /// Order the result
+  /// TODO: FIX? Multiple fields with different orders
   void order(order, [List<String> fields = const[]]) {
     OrderType porder;
 
@@ -59,13 +69,14 @@ abstract class Query {
       }
     }
 
-    this._conditions.retainWhere((cond) => cond.type != "ORDER");
-    this._conditions.add(Condition.order(new OrderCondition(porder, fields)));
+    this._clauses.retainWhere((cond) => cond.type != ClauseType.ORDER);
+    this._clauses.add(new Order(fields, porder));
   }
 
-  /// Set a [value] condition over a [property]
-  void where(String property, value, [comp = ComparisonOperator.EQUAL]) {
-    this._conditions.add(Condition.where(new Comparison(property, value, comp)));
+  /// Set a comparison or condition from [subject] to a [predicate]
+  void where(subject, predicate, [comparisonOp = "=="]) {
+    this._clauses.retainWhere((cond) => cond.type != ClauseType.WHERE);
+    this._clauses.add(new Where(new Comparison(subject, predicate, comparisonOp)));
   }
 
   /// Set the [values] on create or update query

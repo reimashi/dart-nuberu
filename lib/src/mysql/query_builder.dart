@@ -1,25 +1,16 @@
 import 'dart:async';
 import 'package:sqljocky5/sqljocky.dart';
 import 'package:nuberu/src/mysql/connector.dart';
-import 'package:nuberu/nuberu.dart';
 
 import 'dart:mirrors';
-
-class MysqlRepository implements Repository {
+/*
+class MysqlRepository {
   MysqlConnector _connection;
   ConnectionPool _mysql;
 
   MysqlRepository(MysqlConnector conn) {
     this._connection = conn;
     this._mysql = this._connection.SqlConnection;
-  }
-
-  Future<E> findOne<E>(Type type, [Filter filter]) async {
-    if (filter == null) filter = new Filter(limit: 1);
-    else filter.limit = 1;
-
-    List elem = await this.findAll<E>(type, filter);
-    return elem.length > 0 ? elem.first : null;
   }
 
   Future<List<E>> findAll<E>(Type type, [Filter filter]) async {
@@ -46,15 +37,7 @@ class MysqlRepository implements Repository {
     return elems;
   }
 
-  Future<int> count<E>([Filter filter]) {}
-
-  Future save<E>(E model) {}
-
-  Future delete<E>(E model) {}
-
   Future refresh<E>(E model) {}
-
-  Future<bool> exists<E>(E model) {}
 
   Future clear([String name]) {}
 
@@ -97,4 +80,58 @@ class MysqlRepository implements Repository {
       default: return "'${prop.value.toString()}'";
     }
   }
-}
+
+  @override
+  Query count() {
+    // TODO: implement count
+  }
+
+  @override
+  Future create() {
+    // TODO: implement create
+  }
+
+  @override
+  Future delete(instance) {
+    // TODO: implement delete
+  }
+
+  @override
+  Future deleteAll([List<Clause> clauses = const []]) {
+    // TODO: implement deleteAll
+  }
+
+  @override
+  Future<bool> exists([List<Clause> clauses = const []]) {
+    // TODO: implement exists
+  }
+
+  @override
+  Future get(id, [List<Clause> clauses = const []]) {
+    // TODO: implement get
+  }
+
+  @override
+  bool hasProperty(String propName) {
+    // TODO: implement hasProperty
+  }
+
+  @override
+  Future save(instance) {
+    // TODO: implement save
+  }
+
+  @override
+  Future update(instance) {
+    // TODO: implement update
+  }
+
+  @override
+  Query findOne([List<Clause> clauses = const []]) {
+    if (filter == null) filter = new Filter(limit: 1);
+    else filter.limit = 1;
+
+    List elem = await this.findAll<E>(type, filter);
+    return elem.length > 0 ? elem.first : null;
+  }
+}*/

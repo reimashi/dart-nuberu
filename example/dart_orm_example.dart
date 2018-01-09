@@ -12,10 +12,12 @@ main() async {
     print('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
 
-  MysqlConnector conn = new MysqlConnector("galert", "galert", "galertpass");
+  /*MysqlConnector conn = new MysqlConnector("galert", "galert", "galertpass");
   MysqlRepository repo = await conn.connect();
 
   Feed feed = await repo.findOne(Feed);
   print(feed.url);
-  print(feed.active);
+
+  List<Feed> feeds = await repo.findAll()
+                              ..where();*/
 }

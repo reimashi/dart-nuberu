@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'query.dart';
-import 'condition.dart';
+import 'package:nuberu/src/core/clauses/clause.dart';
 
 /// Active connection to a database/repository
 abstract class Repository<E> {
@@ -14,19 +14,19 @@ abstract class Repository<E> {
   Future delete(E instance);
 
   /// Delete the object [instance] of type [E].
-  Future deleteAll([List<Condition> conditions = const[]]);
+  Future deleteAll([List<Clause> clauses = const[]]);
 
   /// Checks if the object [model] of type [E] exists in the database.
-  Future<bool> exists([List<Condition> conditions = const[]]);
+  Future<bool> exists([List<Clause> clauses = const[]]);
 
   /// Find the first element.
-  Query findOne([List<Condition> conditions = const[]]);
+  Query findOne([List<Clause> clauses = const[]]);
 
   /// Find all elements.
-  Query findAll([List<Condition> conditions = const[]]);
+  Query findAll([List<Clause> clauses = const[]]);
 
   /// Get an element
-  Future<E> get(id, [List<Condition> conditions = const[]]);
+  Future<E> get(id, [List<Clause> clauses = const[]]);
 
   /// Save the object
   Future save(E instance);

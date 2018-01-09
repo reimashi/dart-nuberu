@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:logging/logging.dart';
-import 'package:nuberu/src/mysql/repository.dart';
 import 'package:sqljocky5/sqljocky.dart';
 import 'package:nuberu/nuberu.dart';
 
@@ -27,12 +26,38 @@ class MysqlConnector implements Database {
 
   ConnectionPool get SqlConnection => this._connection;
 
-  Future<Repository> connect() async {
-    await this._connection.ping();
-    return new MysqlRepository(this);
+  @override
+  Future connect() async {
+    // TODO: implement flush
   }
 
+  @override
   Future disconnect() async {
     return this._connection.closeConnectionsNow();
+  }
+
+  @override
+  Future flush() {
+    // TODO: implement flush
+  }
+
+  @override
+  Repository getRepo(String name) {
+    // TODO: implement getRepo
+  }
+
+  @override
+  Future<bool> isConnected() {
+    // TODO: implement isConnected
+  }
+
+  @override
+  setModel(String name, Type type) {
+    // TODO: implement setModel
+  }
+
+  @override
+  setModels(Map<String, Type> models) {
+    // TODO: implement setModels
   }
 }
